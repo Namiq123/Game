@@ -16,6 +16,7 @@ var ay1 = 0;
 var ax2 = 0;
 var ay2 = 0;
 var bx = 3750;
+var by = 247;
 
 var Castle1 = new Image();
 Castle1.src = "1.png";
@@ -114,7 +115,7 @@ if (C2 === 0){ c.drawImage(Castle5,780,365,220,70); }
 c.drawImage(Cannon,220,370,80,40);
 c.drawImage(Cannon2,690,370,80,40);
 c.drawImage(Archer1,10,sy-10,170,200,dx,dy,57,67);
-c.drawImage(Ballista,bx,0,935,900,137,247,80,100);
+c.drawImage(Ballista,bx,0,935,900,137,by,80,100);
 
 c.font="30px Arial";
 c.fillStyle = "Red";
@@ -163,16 +164,17 @@ function press(){
 }
 
 function BallistaF(){
-    c.drawImage(Ballista,bx,0,935,900,137,247,80,100);
-    if (event.clientY > 247 && event.clientY < 257){bx = 3750;}
-    if (event.clientY < 237 && event.clientY > 217){bx = 2810;}
-    if (event.clientY < 217 && event.clientY > 197){bx = 1900;}
-    if (event.clientY < 197 && event.clientY > 177){bx = 940;}
-    if (event.clientY < 177 && event.clientY > 157){bx = 0;}
-    if (event.clientY > 257 && event.clientY < 277){bx = 4670;}
-    if (event.clientY > 277 && event.clientY < 297){bx = 5580;}
-    if (event.clientY > 297 && event.clientY < 317){bx = 6540;}
-    if (event.clientY > 317 && event.clientY < 337){bx = 7500;}
+    c.drawImage(Ballista,bx,0,935,900,137,by,80,100);
+    if (event.clientY > 247 && event.clientY < 257){bx = 3750; by = 247;}
+    if (event.clientY < 237 && event.clientY > 217){bx = 2810; by = 247;}
+    if (event.clientY < 217 && event.clientY > 197){bx = 1900; by = 247;}
+    if (event.clientY < 197 && event.clientY > 177){bx = 940; by = 247;}
+    if (event.clientY < 177 && event.clientY > 157){bx = 0; by = 247;}
+    if (event.clientY > 257 && event.clientY < 277){bx = 4670; by = 247;}
+    if (event.clientY > 277 && event.clientY < 297){bx = 5580; by = 235;}
+    if (event.clientY > 297 && event.clientY < 317){bx = 6540; by = 235;}
+    if (event.clientY > 317 && event.clientY < 337){bx = 7500; by = 235;}
+    if (event.clientY > 337 && event.clientY < 357){bx = 8375; by =230;}
      console.log(event.clientX, event.clientY);
 }
 
@@ -190,5 +192,4 @@ if (C2 <= 0){LC = 810; RC = 40;}
 }
 //}
 
-//example
 </script>
