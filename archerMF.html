@@ -1,0 +1,19 @@
+<canvas id = "c" height=400 width=400 style="border: 2px solid red;"></canvas>
+<script>
+setInterval(MF,100);
+var x = 0;
+
+
+function MF(){
+var c = document.getElementById("c").getContext("2d");
+var Archer1 = new Image();
+Archer1.src = "ArcherMF.png";
+c.clearRect(0,0,400,400);
+c.drawImage(Archer1,10,x-10,170,200,10,10,170,200);
+x += 236;
+if (x > 3040) x=236;
+console.log(x);
+}
+
+
+</script>

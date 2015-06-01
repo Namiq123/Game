@@ -1,0 +1,31 @@
+<canvas id = "c" height=500 width=1000 style="border: 2px solid red;" onmousedown="press()"></canvas>
+<script>
+var c = document.getElementById("c").getContext("2d");
+
+var Arrow = new Image();
+Arrow.src = "arrow.png";
+
+var background = new Image();
+background.src = "BG.png";
+
+c.drawImage(background,0,0,2650,500);
+c.drawImage(Arrow,100,100,80,40);
+
+var Degrees=0;
+
+function Rotate(d){
+    c.clearRect(0,0,1000,500);
+    c.drawImage(background,0,0,2650,500);
+    c.save();
+    c.translate(1000/2,500/2);
+//    c.translate(1000/2,500/2);
+    c.rotate(d*Math.PI/180);
+//    c.translate(-1000/2,-500/2);
+    c.drawImage(Arrow,-Arrow.width/2,-Arrow.width/2,80,40);
+    c.restore();
+}
+
+Degrees+=10;
+Rotate(Degrees);
+
+</script>

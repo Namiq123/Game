@@ -1,0 +1,21 @@
+<canvas id = "c" height=400 width=400 style="border: 2px solid red;"></canvas>
+<script>
+setInterval(D,100);
+var x = 0;
+
+
+function D(){
+var c = document.getElementById("c").getContext("2d");
+var Archer3 = new Image();
+Archer3.src = "ArcherD.png";
+c.clearRect(0,0,400,400);
+c.drawImage(Archer3,0,x,250,250,0,0,250,250);
+x += 259;
+if (x > 3370) x=259;
+console.log(x);
+}
+
+
+
+
+</script>

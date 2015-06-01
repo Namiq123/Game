@@ -1,0 +1,19 @@
+<canvas id = "c" height=400 width=400 style="border: 2px solid red;"></canvas>
+<script>
+var c = document.getElementById("c").getContext("2d");
+setInterval(A,100);
+var x = 25;
+
+
+function A(){
+var c = document.getElementById("c").getContext("2d");
+var Archer2 = new Image();
+Archer2.src = "ArcherA.png";
+c.clearRect(0,0,400,400);
+c.drawImage(Archer2,0,x,170,250,0,0,170,250);
+x += 278;
+if (x > 4440) x=303;
+console.log(x);
+}
+
+</script>

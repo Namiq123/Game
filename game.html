@@ -1,0 +1,192 @@
+<canvas id = "c" height=500 width=1000 style="border: 2px solid red;" onmousemove="BallistaF()"></canvas>
+<script>
+var c = document.getElementById("c").getContext("2d");
+var LC = 800;
+var RC = 40;
+var C1 = 100;
+var C2 = 100;
+var HP = 50;
+var sy = 0;
+var dy = 800;
+var dx = 80;
+var x = 25;
+var ady = 800;
+var ax1 = 0;
+var ay1 = 0;
+var ax2 = 0;
+var ay2 = 0;
+var bx = 3750;
+
+var Castle1 = new Image();
+Castle1.src = "1.png";
+
+var Castle2 = new Image();
+Castle2.src = "2.png";
+
+var Castle3 = new Image();
+Castle3.src = "3.png";
+
+var Castle4 = new Image();
+Castle4.src = "4.png";
+
+var Castle5 = new Image();
+Castle5.src = "5.png";
+
+var Cannon = new Image();
+Cannon.src = "LC.gif";
+
+var Cannon2 = new Image();
+Cannon2.src = "RC.gif";
+
+var background = new Image();
+background.src = "BG.png";
+
+var PM = new Image();
+PM.src = "PM.png";
+
+var Archer1 = new Image();
+Archer1.src = "ArcherMF.png";
+
+var Archer2 = new Image();
+Archer2.src = "ArcherA.png";
+
+var Arrow = new Image();
+Arrow.src = "arrow.png";
+
+var Stick = new Image();
+Stick.src = "123.png";
+
+var Ballista = new Image();
+Ballista.src = "bows2.png";
+
+//c.drawImage(PM,0,0,600,400);
+//window.onclick = Play;
+
+//function Play(){
+
+c.drawImage(background,0,0,2650,500);
+c.drawImage(Stick,184,270,10,30);
+c.drawImage(Castle1,0,285,220,140);
+c.drawImage(Castle1,780,285,220,140);
+c.drawImage(Cannon,220,370,80,40);
+c.drawImage(Cannon2,690,370,80,40);
+c.drawImage(Ballista,3750,0,935,900,137,247,80,100);
+
+setInterval(shoot,100);
+window.onkeypress = Fire;
+
+
+function shoot(e){
+
+c.drawImage(background,0,0,2650,500);
+
+c.fillStyle = "Green";
+if (C1 < 50)    { c.fillStyle = "Red"; } 
+if (C1 > 50)    { c.fillStyle = "Green"; }
+c.fillRect(HP,25,C1,10);
+c.strokeRect(50,25,100,10);
+if (C2 > 50)    { c.fillStyle = "Green"; }      
+if (C2 < 50)    { c.fillStyle = "Red"; }
+c.fillRect(HP + 800,25,C2,10);
+c.strokeRect(850,25,100,10);
+
+if (C1 > 0 && RC === 220)    C1 = C1-10;        
+if (C2 > 0 && LC === 785)    C2 = C2-10; 
+if (C2 > 0 && ax1 === 775)   C2 = C2-5;
+
+c.beginPath();
+if(RC>50){ c.arc(RC, 376, 5, 0, 2 * Math.PI);    RC= RC-15; }
+if(LC<800){ c.arc(LC, 376, 5, 0, 2 * Math.PI);    LC= LC+15; }
+c.fillStyle = "yellow";
+c.fill();
+
+c.drawImage(Stick,184,270,10,30);
+if (C1 <= 100 && C1 > 70){ c.drawImage(Castle1,0,285,220,140); }
+if (C2 <= 100 && C2 > 70){ c.drawImage(Castle1,780,285,220,140); }
+if (C1 <= 70 && C1 > 40){ c.drawImage(Castle2,0,285,220,140); }
+if (C2 <= 70 && C2 > 40){ c.drawImage(Castle2,780,305,220,120); }
+if (C1 <= 40 && C1 > 10){ c.drawImage(Castle3,0,305,220,120); }
+if (C2 <= 40 && C2 > 10){ c.drawImage(Castle3,780,285,220,140); }
+if (C1 <= 10 && C1 > 0){ c.drawImage(Castle4,0,325,220,100); }
+if (C2 <= 10 && C2 > 0){ c.drawImage(Castle4,780,325,220,100); }
+if (C1 === 0){ c.drawImage(Castle5,0,365,220,70); }
+if (C2 === 0){ c.drawImage(Castle5,780,365,220,70); }
+c.drawImage(Cannon,220,370,80,40);
+c.drawImage(Cannon2,690,370,80,40);
+c.drawImage(Archer1,10,sy-10,170,200,dx,dy,57,67);
+c.drawImage(Ballista,bx,0,935,900,137,247,80,100);
+
+c.font="30px Arial";
+c.fillStyle = "Red";
+if (C1 === 0){ c.fillText("Right Wins",225,140); }
+if (C2 === 0){ c.fillText("Left Wins",225,140); }
+if (C1 === 0 && C2 === 0){ c.fillText("Draw",225,140); }
+if (C2 > 0){
+sy += 236;
+if ( sy > 3040) { sy=236; }
+
+dx += 5;
+if ( dx > 500) { dx = 500; }
+
+if ( dx === 500 ){ sy = -10; }
+
+if ( sy === -10){ 
+    dy = 800;
+    c.drawImage(Archer2,0,x,170,250,dx-15,ady,75,85);
+    x += 278;
+    if (x > 4440) { x=25; }
+    if (ady === 340){
+    c.beginPath();
+    c.moveTo(ax1,ay1);
+    c.lineTo(ax2,ay2);
+    c.stroke();
+    if (x > 2221) {
+        ax1 = 495;
+        ay1 = 367; 
+        ax2 = 517;
+        ay2 = 364;
+    }
+    ax1 += 40;
+    ay1 -= 1; 
+    ax2 += 40;
+    ay2 -= 1;
+}
+}
+}else{ 
+    c.drawImage(Archer1,10,sy-10,170,200,dx,dy,57,67);
+}
+
+}
+
+function press(){
+    console.log(event.clientX, event.clientY);
+}
+
+function BallistaF(){
+    c.drawImage(Ballista,bx,0,935,900,137,247,80,100);
+    if (event.clientY > 247 && event.clientY < 257){bx = 3750;}
+    if (event.clientY < 237 && event.clientY > 217){bx = 2810;}
+    if (event.clientY < 217 && event.clientY > 197){bx = 1900;}
+    if (event.clientY < 197 && event.clientY > 177){bx = 940;}
+    if (event.clientY < 177 && event.clientY > 157){bx = 0;}
+    if (event.clientY > 257 && event.clientY < 277){bx = 4670;}
+    if (event.clientY > 277 && event.clientY < 297){bx = 5580;}
+    if (event.clientY > 297 && event.clientY < 317){bx = 6540;}
+    if (event.clientY > 317 && event.clientY < 337){bx = 7500;}
+     console.log(event.clientX, event.clientY);
+}
+
+function Fire(e){
+var key = String.fromCharCode(e.charCode);
+console.log(key);
+if (key === "e") { dy =355; dx =80; ady =340;}
+if (key === "d" && LC > 785){ LC = 290; }
+if (key === "D" && LC > 785){ LC = 290; }
+if (key === "j" && RC < 225){ RC = 700; }
+if (key === "J" && RC < 225){ RC = 700; }
+if (C1 <= 0){LC = 810; RC = 40;}
+if (C2 <= 0){LC = 810; RC = 40;}   
+
+}
+//}
+</script>
